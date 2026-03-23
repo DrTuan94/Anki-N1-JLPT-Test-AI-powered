@@ -1,1 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anki N1, JLPT Test AI powered - Support & Legal</title>
+    <meta name="description" content="Privacy Policy, Terms of Use, and Support for Anki N1, JLPT Test AI powered - Your AI-powered JLPT N1 study companion">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        :root {
+            --primary-purple: #5B4FE9;
+            --primary-cyan: #00D4FF;
+            --dark-bg: #1a1a2e;
+            --card-bg: #16213e;
+            --text-light: #e8e8e8;
+            --text-gray: #a0a0a0;
+            --accent-pink: #FF6B9D;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text-light);
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary-purple) 0%, var(--primary-cyan) 100%);
+            padding: 60px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            position: relative;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header .tagline {
+            font-size: 1.2em;
+            opacity: 0.95;
+            position: relative;
+        }
+
+        .nav {
+            background: rgba(22, 33, 62, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 15px 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            background: rgba(91, 79, 233, 0.1);
+            border: 1px solid rgba(91, 79, 233, 0.3);
+        }
+
+        .nav a:hover {
+            background: linear-gradient(135deg, var(--primary-purple), var(--primary-cyan));
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(91, 79, 233, 0.4);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .section {
+            background: rgba(22, 33, 62, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(91, 79, 233, 0.2);
+        }
+
+        .section h2 {
+            color: var(--primary-cyan);
+            font-size: 2em;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(0, 212, 255, 0.3);
+        }
+
+        .section h3 {
+            color: var(--text-light);
+            font-size: 1.5em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        .section h4 {
+            color: var(--primary-cyan);
+            font-size: 1.2em;
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+
+        .section p {
+            margin-bottom: 15px;
+            color: var(--text-gray);
+            line-height: 1.8;
+        }
+
+        .section ul, .section ol {
+            margin-left: 30px;
+            margin-bottom: 15px;
+            color: var(--text-gray);
+        }
+
+        .section li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .section strong {
+            color: var(--text-light);
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, rgba(91, 79, 233, 0.2), rgba(0, 212, 255, 0.1));
+            border-left: 4px solid var(--primary-cyan);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .highlight.warning {
+            background: linear-gradient(135deg, rgba(255, 107, 157, 0.2), rgba(255, 107, 157, 0.1));
+            border-left-color: var(--accent-pink);
+        }
+
+        .contact-box {
+            background: linear-gradient(135deg, var(--primary-purple), var(--primary-cyan));
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .contact-box a {
+            color: white;
+            font-size: 1.2em;
+            font-weight: 600;
+            text-decoration: none;
+            border-bottom: 2px solid white;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-gray);
+            border-top: 1px solid rgba(91, 79, 233, 0.2);
+        }
+
+        .footer p {
+            margin: 10px 0;
+        }
+
+        .checkmark-list {
+            list-style: none;
+            margin-left: 0 !important;
+        }
+
+        .checkmark-list li::before {
+            content: '✅ ';
+            margin-right: 8px;
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, var(--primary-purple), var(--primary-cyan));
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 24px;
+            box-shadow: 0 4px 12px rgba(91, 79, 233, 0.4);
+            transition: all 0.3s ease;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(91, 79, 233, 0.6);
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .header .tagline {
+                font-size: 1em;
+            }
+
+            .section {
+                padding: 25px;
+            }
+
+            .section h2 {
+                font-size: 1.6em;
+            }
+
+            .nav-container {
+                gap: 10px;
+            }
+
+            .nav a {
+                padding: 8px 15px;
+                font-size: 0.9em;
+            }
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .date-badge {
+            display: inline-block;
+            background: rgba(0, 212, 255, 0.2);
+            color: var(--primary-cyan);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Anki N1, JLPT Test AI powered</h1>
+        <p class="tagline">Master the JLPT N1 with AI-Powered Intelligence</p>
+    </div>
+
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="#home">Home</a>
+            <a href="#privacy">Privacy Policy</a>
+            <a href="#terms">Terms of Use</a>
+            <a href="#support">Support</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <section id="home" class="section">
+            <h2>Welcome</h2>
+            <p>Welcome to the official support and legal documentation for <strong>Anki N1, JLPT Test AI powered</strong> - the ultimate AI-powered study companion for mastering the JLPT N1 exam.</p>
+            
+            <div class="highlight">
+                <h4>🚀 Quick Links</h4>
+                <ul class="checkmark-list">
+                    <li><a href="#privacy" style="color: var(--primary-cyan);">Privacy Policy</a> - Learn how we protect your data</li>
+                    <li><a href="#terms" style="color: var(--primary-cyan);">Terms of Use</a> - Understand your rights and responsibilities</li>
+                    <li><a href="#support" style="color: var(--primary-cyan);">Support & FAQ</a> - Get help and answers</li>
+                </ul>
+            </div>
+
+            <h3>About the App</h3>
+            <p>Anki N1, JLPT Test AI powered is a comprehensive study ecosystem designed specifically for the most advanced level of Japanese proficiency. Powered by Apple Intelligence, we provide personalized AI coaching, full-length practice tests, and intelligent flashcard management.</p>
+
+            <h4>Key Features:</h4>
+            <ul class="checkmark-list">
+                <li>AI-Powered Study Coach with personalized 30-day plans</li>
+                <li>30 Full-Length JLPT N1 Practice Tests</li>
+                <li>One-tap Anki Export for mistake review</li>
+                <li>Real-time Pass Prediction</li>
+                <li>749+ Premium Vocabulary Cards</li>
+                <li>100% Offline, Zero Data Collection</li>
+            </ul>
+
+            <div class="contact-box">
+                <p style="margin-bottom: 10px;">Need Help?</p>
+                <a href="mailto:important041994@gmail.com">important041994@gmail.com</a>
+            </div>
+        </section>
+
+        <section id="privacy" class="section">
+            <span class="date-badge">Last Updated: March 23, 2026</span>
+            <h2>Privacy Policy</h2>
+
+            <h3>Our Privacy-First Philosophy</h3>
+            <p><strong>We believe your study data belongs to you.</strong> Anki N1, JLPT Test AI powered is designed with privacy as a core principle:</p>
+            <ul class="checkmark-list">
+                <li>No personal data collection</li>
+                <li>No third-party tracking</li>
+                <li>No advertisements</li>
+                <li>Full offline functionality</li>
+            </ul>
+
+            <h3>Information We Do NOT Collect</h3>
+            <p>We do <strong>not</strong> collect, store, or transmit:</p>
+            <ul>
+                <li>Personal identification information (name, email, phone number)</li>
+                <li>Study progress or quiz results to external servers</li>
+                <li>Device identifiers for tracking purposes</li>
+                <li>Location data</li>
+                <li>User behavior analytics</li>
+                <li>Contacts or photos</li>
+            </ul>
+
+            <h3>Information Processed Locally</h3>
+            <p>The following data is processed <strong>exclusively on your device</strong> and never leaves it:</p>
+            
+            <h4>Study Data</h4>
+            <ul>
+                <li>Quiz and test results</li>
+                <li>Study progress and streak information</li>
+                <li>Custom vocabulary cards you create</li>
+                <li>Performance analytics for AI Study Coach</li>
+                <li>Anki export history</li>
+            </ul>
+
+            <h4>App Preferences</h4>
+            <ul>
+                <li>Interface settings and customization</li>
+                <li>Language preferences</li>
+                <li>Notification settings</li>
+                <li>Subscription status</li>
+            </ul>
+
+            <div class="highlight">
+                <h4>🔒 Apple Intelligence Integration</h4>
+                <p>When you use AI Coach features on compatible devices (iOS 18.1+):</p>
+                <ul>
+                    <li><strong>Processing Location:</strong> AI analysis happens entirely on-device</li>
+                    <li><strong>No Cloud Upload:</strong> Your study data is never sent to external servers</li>
+                    <li><strong>Apple's Privacy:</strong> Processing follows Apple's strict privacy standards</li>
+                    <li><strong>Your Control:</strong> Disable AI features anytime in Settings</li>
+                </ul>
+            </div>
+
+            <h3>Subscription and Payment</h3>
+            <p>Subscription purchases are processed entirely through Apple's App Store:</p>
+            <ul>
+                <li><strong>Payment Processing:</strong> Handled exclusively by Apple</li>
+                <li><strong>What We Receive:</strong> Only subscription status (active/expired)</li>
+                <li><strong>What We Don't See:</strong> Credit cards, billing addresses, payment history</li>
+            </ul>
+
+            <h3>Data Storage and Security</h3>
+            <p>All app data is stored in your device's encrypted app sandbox, protected by iOS security features including device passcode/biometric authentication.</p>
+
+            <div class="highlight warning">
+                <h4>⚠️ Important: No Remote Servers</h4>
+                <p>We do not operate any remote servers that store user data. No user accounts, no cloud synchronization. Your data stays on your device.</p>
+            </div>
+
+            <h3>Data Deletion</h3>
+            <p>Since all data is stored locally on your device:</p>
+            <ul>
+                <li><strong>Immediate Deletion:</strong> Uninstalling the app permanently deletes all data</li>
+                <li><strong>Reset Option:</strong> Reset all progress in Settings</li>
+                <li><strong>No Remote Copies:</strong> We have no remote copies to delete</li>
+            </ul>
+
+            <h3>Contact Us</h3>
+            <p>Questions about this Privacy Policy?</p>
+            <div class="contact-box">
+                <a href="mailto:important041994@gmail.com">important041994@gmail.com</a>
+            </div>
+        </section>
+
+        <section id="terms" class="section">
+            <span class="date-badge">Last Updated: March 23, 2026</span>
+            <h2>Terms of Use</h2>
+
+            <h3>Agreement to Terms</h3>
+            <p>By downloading, installing, or using <strong>Anki N1, JLPT Test AI powered</strong>, you agree to be bound by these Terms of Use. If you do not agree, do not use the App.</p>
+
+            <h3>License Grant</h3>
+            <p>We grant you a limited, non-exclusive, non-transferable, revocable license to use the App for your personal, non-commercial use.</p>
+
+            <h4>You may NOT:</h4>
+            <ul>
+                <li>Copy, modify, or create derivative works</li>
+                <li>Reverse engineer or decompile the App</li>
+                <li>Use for commercial purposes without authorization</li>
+                <li>Share your Pro subscription access with others</li>
+                <li>Bypass subscription requirements</li>
+            </ul>
+
+            <h3>Subscription Terms</h3>
+            
+            <h4>Available Plans:</h4>
+            <ul>
+                <li><strong>Monthly Pro:</strong> $5.99/month</li>
+                <li><strong>Annual Pro:</strong> $34.99/year</li>
+            </ul>
+
+            <h4>Billing and Renewal</h4>
+            <ul>
+                <li>Subscriptions are billed through your Apple ID account</li>
+                <li>Auto-renewal unless canceled 24 hours before period ends</li>
+                <li>Account charged for renewal within 24 hours before current period ends</li>
+                <li>Renewal cost clearly identified before charging</li>
+            </ul>
+
+            <h4>Cancellation</h4>
+            <ul>
+                <li>Cancel anytime through Apple ID account settings</li>
+                <li>Cancellation takes effect at end of current billing period</li>
+                <li>No refunds for partial subscription periods</li>
+                <li>Retain Pro access until end of paid period</li>
+            </ul>
+
+            <h3>Refund Policy</h3>
+            <div class="highlight">
+                <h4>Apple's Refund Policy Applies</h4>
+                <p>All purchases are processed through Apple's App Store. To request a refund:</p>
+                <ol>
+                    <li>Go to <a href="https://reportaproblem.apple.com" target="_blank" style="color: var(--primary-cyan);">reportaproblem.apple.com</a></li>
+                    <li>Sign in with your Apple ID</li>
+                    <li>Find the purchase and select "Report a Problem"</li>
+                    <li>Follow Apple's refund request process</li>
+                </ol>
+            </div>
+
+            <h3>Content and Intellectual Property</h3>
+            <p>All content within the App is protected by copyright, trademark, and other intellectual property laws.</p>
+
+            <div class="highlight warning">
+                <h4>⚠️ JLPT Content Disclaimer</h4>
+                <p>This app is an independent study tool and is <strong>NOT officially affiliated with, endorsed by, or connected to</strong> the Japan Educational Exchanges and Services (JEES) or The Japan Foundation.</p>
+                <p>"JLPT" and "Japanese-Language Proficiency Test" are trademarks of their respective owners.</p>
+            </div>
+
+            <h3>Disclaimer of Warranties</h3>
+            <p>THE APP IS PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND.</p>
+            <ul>
+                <li>We do not guarantee passing the JLPT N1 exam</li>
+                <li>Study outcomes depend on your effort and many factors</li>
+                <li>AI predictions are educational tools, not guarantees</li>
+            </ul>
+
+            <h3>Limitation of Liability</h3>
+            <p>We shall not be liable for any indirect, incidental, special, or consequential damages including lost profits, data, study time, or exam fees.</p>
+
+            <h3>Contact Information</h3>
+            <div class="contact-box">
+                <p style="margin-bottom: 10px;">Questions about Terms?</p>
+                <a href="mailto:important041994@gmail.com">important041994@gmail.com</a>
+            </div>
+        </section>
+
+        <section id="support" class="section">
+            <h2>Support & FAQ</h2>
+
+            <div class="contact-box">
+                <p style="margin-bottom: 10px;">📧 Contact Support</p>
+                <a href="mailto:important041994@gmail.com">important041994@gmail.com</a>
+                <p style="margin-top: 10px; font-size: 0.9em;">Response time: Within 48 hours</p>
+            </div>
+
+            <h3>Frequently Asked Questions</h3>
+
+            <h4>❓ What is Anki N1, JLPT Test AI powered?</h4>
+            <p>Anki N1 is a comprehensive study app designed specifically for mastering the JLPT N1 level. It combines AI-powered personalized study plans, full-length practice tests, intelligent flashcards, and Anki export functionality.</p>
+
+            <h4>❓ Do I need an internet connection?</h4>
+            <p>No! The app works 100% offline after initial download. All study materials, AI coaching, and practice tests are available without internet.</p>
+
+            <h4>❓ What's included in Pro subscription?</h4>
+            <ul class="checkmark-list">
+                <li>All 30 full-length practice tests</li>
+                <li>AI Study Coach with personalized plans</li>
+                <li>749+ premium vocabulary flashcards</li>
+                <li>Unlimited Anki exports</li>
+                <li>Streak Freeze protection</li>
+                <li>Real-time JLPT Pass Prediction</li>
+                <li>Custom card editor</li>
+                <li>Complete offline access</li>
+            </ul>
+
+            <h4>❓ How much does Pro cost?</h4>
+            <ul>
+                <li><strong>Monthly:</strong> $5.99/month</li>
+                <li><strong>Annual:</strong> $34.99/year (Save ~50%!)</li>
+            </ul>
+
+            <h4>❓ How do I cancel my subscription?</h4>
+            <ol>
+                <li>Open Settings on your iPhone</li>
+                <li>Tap your name at the top</li>
+                <li>Tap Subscriptions</li>
+                <li>Select Anki N1, JLPT Test AI powered</li>
+                <li>Tap Cancel Subscription</li>
+            </ol>
+
+            <h4>❓ How does the AI Study Coach work?</h4>
+            <p>The AI Coach analyzes your quiz and test performance to identify weak areas, then generates a precise 30-day study plan. It uses on-device Apple Intelligence processing, so your data never leaves your device.</p>
+
+            <h4>❓ How do I export to Anki?</h4>
+            <ol>
+                <li>Complete a practice test</li>
+                <li>Review your answers</li>
+                <li>Tap the Anki Export button</li>
+                <li>Choose where to save the .apkg file</li>
+                <li>Import into Anki app or Anki desktop</li>
+            </ol>
+
+            <h3>Technical Issues</h3>
+
+            <h4>🔧 App crashes when opening</h4>
+            <ol>
+                <li>Force quit the app (swipe up from app switcher)</li>
+                <li>Restart your iPhone</li>
+                <li>Check for app updates in App Store</li>
+                <li>If persists, contact support with device model and iOS version</li>
+            </ol>
+
+            <h4>🔧 Audio doesn't play</h4>
+            <ul>
+                <li>Check device isn't on silent mode</li>
+                <li>Ensure volume is turned up</li>
+                <li>Try disconnecting/reconnecting Bluetooth headphones</li>
+                <li>Restart the app</li>
+            </ul>
+
+            <h4>🔧 Subscription not recognized</h4>
+            <ol>
+                <li>Open the App</li>
+                <li>Go to Settings</li>
+                <li>Tap Restore Purchases</li>
+                <li>Wait for process to complete</li>
+            </ol>
+
+            <h3>System Requirements</h3>
+            <ul>
+                <li><strong>Platform:</strong> iOS / iPadOS</li>
+                <li><strong>Minimum iOS:</strong> iOS 16.0 or later</li>
+                <li><strong>Apple Intelligence:</strong> iOS 18.1+ (for AI Coach)</li>
+                <li><strong>Storage:</strong> ~200 MB</li>
+            </ul>
+
+            <h3>Supported Languages</h3>
+            <ul>
+                <li>🇬🇧 English</li>
+                <li>🇻🇳 Vietnamese (Tiếng Việt)</li>
+                <li>🇯🇵 Japanese (日本語)</li>
+                <li>🇨🇳 Simplified Chinese (简体中文)</li>
+                <li>🇰🇷 Korean (한국어)</li>
+                <li>🇮🇩 Indonesian (Bahasa Indonesia)</li>
+            </ul>
+
+            <h3>Feature Requests</h3>
+            <p>Have ideas for new features? We'd love to hear from you!</p>
+            <div class="contact-box">
+                <a href="mailto:important041994@gmail.com">Send Feature Request</a>
+            </div>
+        </section>
+
+        <section id="contact" class="section">
+            <h2>Contact Us</h2>
+            <p>We're here to help you succeed in your JLPT N1 journey!</p>
+
+            <div class="contact-box">
+                <h3 style="margin-bottom: 15px;">Get in Touch</h3>
+                <a href="mailto:important041994@gmail.com">important041994@gmail.com</a>
+                <p style="margin-top: 20px; font-size: 0.9em;">⏱️ Typical response time: Within 48 hours</p>
+            </div>
+
+            <h3>When contacting support, please include:</h3>
+            <ul>
+                <li>Device model and iOS version</li>
+                <li>App version (found in Settings)</li>
+                <li>Detailed description of the issue</li>
+                <li>Screenshots (if applicable)</li>
+                <li>Steps to reproduce the problem</li>
+            </ul>
+
+            <div class="highlight">
+                <h4>📱 Download the App</h4>
+                <p>Available on the App Store for iPhone and iPad</p>
+                <p style="margin-top: 10px;"><strong>頑張ってください！(Good luck with your studies!)</strong></p>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <p><strong>Anki N1, JLPT Test AI powered</strong></p>
+        <p>Master the JLPT N1 with AI-Powered Intelligence</p>
+        <p style="margin-top: 20px;">© 2026 Anki N1. All rights reserved.</p>
+        <p style="font-size: 0.9em; margin-top: 10px;">
+            This app is not affiliated with JEES or The Japan Foundation.
+        </p>
+        <p style="margin-top: 20px;">
+            <a href="#privacy" style="color: var(--primary-cyan); text-decoration: none;">Privacy Policy</a> • 
+            <a href="#terms" style="color: var(--primary-cyan); text-decoration: none;">Terms of Use</a> • 
+            <a href="#support" style="color: var(--primary-cyan); text-decoration: none;">Support</a>
+        </p>
+    </footer>
+
+    <a href="#" class="back-to-top" id="backToTop">↑</a>
+
+    <script>
+        const backToTop = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        backToTop.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
